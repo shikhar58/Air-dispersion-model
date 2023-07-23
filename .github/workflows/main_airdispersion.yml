@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'airdispersion'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9F793C6EECAB456E9B81F492C73CB6EA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CA70D49104FA435385CECC5FB5401D46 }}
