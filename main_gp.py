@@ -8,8 +8,8 @@ import streamlit as st
 from scipy.interpolate import interp2d
 
 def GaussianEngine(stack_height, emission_rate, wind_direction, wind_speed, stability):
-    xsize = 500 # m
-    ysize = 500 # m
+    xsize = 400 # m
+    ysize = 400 # m
     zsize = 10 # m
     tsize = 24*60*60 # s (1 day)
     dx = 2 # m
@@ -30,8 +30,8 @@ def GaussianEngine(stack_height, emission_rate, wind_direction, wind_speed, stab
     signal = None
     info = []
     
-    x = 250
-    y = 250
+    x = 200
+    y = 200
     z = stack_height                             #source is at a height 0, but it can be changed as well.
     correction=360-90
     leakrate = emission_rate
@@ -80,7 +80,7 @@ def plot(signal,wind_dir):
     fig, ax = plt.subplots()
     pc = ax.pcolormesh(XI, YI, ZI, cmap='viridis')
     plt.colorbar(pc)
-    sc=ax.scatter(250,250,c='red')
+    sc=ax.scatter(200,200,c='red')
 
     
     # Set axis labels
@@ -100,11 +100,11 @@ def plot(signal,wind_dir):
     interp_func= interp2d(x[::20], y[::20], z[::20], kind='cubic')
     #print("FBFE")
     #plt.show()
-    x_arc=np.array([250+i*np.cos(np.deg2rad(90+wind_dir)) for i in range(0,200,2)])
-    y_arc=np.array([250+i*np.sin(np.deg2rad(90+wind_dir)) for i in range(0,200,2)])
+    x_arc=np.array([250+i*np.cos(np.deg2rad(90+wind_dir)) for i in range(0,150,1)])
+    y_arc=np.array([250+i*np.sin(np.deg2rad(90+wind_dir)) for i in range(0,150,1)])
     z_arc=np.array([interp_func(x_arc[i],y_arc[i]) for i in range(len(x_arc))])
     #print(z_arc)
-    a=np.array(range(0,200,2))
+    a=np.array(range(0,150,1))
     
     fig1, ax1 = plt.subplots()
     ax1.plot(a,z_arc)
