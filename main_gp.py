@@ -1,11 +1,4 @@
-"""
-The following example uses Chama to optimize the placement of sensors that 
-detects a set of potential plumes from 10 well pads based on 1 hour wind data. 
-Simulation data is created using the Gaussian plume model in Chama.
-The coverage formulation is used to optimize sensor placement.
-Note that this example uses notional wind data, leak rates, and sensor thresholds
-along with low resolution simulations for demonstration purposes.
-"""
+
 import numpy as np
 import pandas as pd
 import matplotlib.pylab as plt
