@@ -14,7 +14,7 @@ def GaussianEngine(stack_height, emission_rate, wind_direction, wind_speed, stab
     tsize = 24*60*60 # s (1 day)
     dx = 3 # m
     dy = 3 # m
-    dz = 1 # m
+    dz = 10 # m
     dt = 3600 # s (hourly)
     
     ### Build the x,y,z,t grid
@@ -97,12 +97,14 @@ def plot(signal,wind_dir):
     #plt.scatter(50,50)
     st.text("red point is the point source for pollutant emission \n \n")
     
-    interp_func= interp2d(x[::20], y[::20], z[::20], kind='cubic')
+    interp_func= interp2d(x[::10], y[::10], z[::10], kind='cubic')
+    #interp_func= interp2d(x[z>z.max()*0.01], y[z>z.max()*0.01], z[z>z.max()*0.01], kind='cubic')
     #print("FBFE")
     #plt.show()
     x_arc=np.array([250+i*np.cos(np.deg2rad(90+wind_dir)) for i in range(0,150,1)])
     y_arc=np.array([250+i*np.sin(np.deg2rad(90+wind_dir)) for i in range(0,150,1)])
     z_arc=np.array([interp_func(x_arc[i],y_arc[i]) for i in range(len(x_arc))])
+    z_arc[z_arc<0]=0
     #print(z_arc)
     a=np.array(range(0,150,1))
     
