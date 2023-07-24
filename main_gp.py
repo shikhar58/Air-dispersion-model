@@ -12,8 +12,8 @@ def GaussianEngine(stack_height, emission_rate, wind_direction, wind_speed, stab
     ysize = 400 # m
     zsize = 10 # m
     tsize = 24*60*60 # s (1 day)
-    dx = 2 # m
-    dy = 2 # m
+    dx = 3 # m
+    dy = 3 # m
     dz = 1 # m
     dt = 3600 # s (hourly)
     
