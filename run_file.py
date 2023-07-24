@@ -7,23 +7,23 @@ Created on Sun Jul 23 15:48:44 2023
 
 import streamlit as st
 import main_gp as gp
-
+st.set_option('deprecation.showPyplotGlobalUse', False)
 #gp.GaussianEngine(1,0.014,230,1,"C")
 #gp.plot()
-st.title("Air dispersion")
+st.title("Air dispersion simulation")
 
 st.text("Using Gaussian plume model")
 
 def main():
     st.title("Stack properties:")
 
-    slider_label1 = "Stack height?"
+    slider_label1 = "Stack height (meter)?"
     stack_height = st.slider(slider_label1, 0, 10, 1)
 
-    st.text_label1=("Emission rate (gram per second per meter cube) ?")
+    st.text_label1=("Emission rate (gram/second) ?")
     emission_rate = st.text_input(st.text_label1,0.001)
     
-    st.title("wind properties:")
+    st.title("Wind properties:")
     
     slider_label2 = "Wind direction ?"
     wind_direction = st.slider(slider_label2, 0, 360, 60)
@@ -39,8 +39,10 @@ def main():
     st.title("---------------Model result---------------")
     
     result=gp.GaussianEngine(stack_height,float(emission_rate),wind_direction,float(wind_speed),stability_class)
-    gp.plot(result)
-    st.text("red point is the source")
+
+    gp.plot(result,wind_direction)
+
+
 if __name__=="__main__":
     main()
 
